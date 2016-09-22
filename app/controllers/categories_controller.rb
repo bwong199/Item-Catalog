@@ -3,7 +3,10 @@ class CategoriesController < ApplicationController
 	before_action :require_correct_user, only: [ :destroy, :edit]
 	def index
 		@categories = Category.all
-
+		respond_to do |format|
+		   format.html # show.html.erb
+		   format.json { render json: @categories.to_json(:include => [:items])}
+		 end
 	end 
 
 	def new 

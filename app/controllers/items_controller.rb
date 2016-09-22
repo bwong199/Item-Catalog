@@ -38,7 +38,11 @@ class ItemsController < ApplicationController
 	end 
 
 	def require_correct_user
-		category = Category.find(params[:id])
+		begin 
+			category = Category.find(params[:id])
+		rescue 
+			category = Item.find(params[:id])
+		end 
 		redirect_to categories_path if current_user != category.user
 	end
 end
