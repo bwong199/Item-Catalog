@@ -1,0 +1,27 @@
+HOME
+
+<br>
+
+<% @categories.each do |u| %>
+<%= link_to u.name, category_path(u) %> 
+<br>
+
+<% if current_user == u.user %> 
+
+<%= button_to "Delete Category", {:controller => :categories, :action => 'destroy', :id => u.id, }, :method => "delete", class: "btn btn-danger", data: {confirm: "Are you sure you  want to delete this #{u.name}?"} %>
+<br>
+<%= button_to "Edit Category", {:controller => :categories, :action => 'edit', :id => u.id}, :method => "get", class: "btn btn-primary" %>
+
+<br>
+
+<% end %> 
+
+<% if current_user == u.user %> 
+<% u.items.each do |i| %> 
+<%= link_to i.name, edit_item_path(i) %> 
+<%= button_to "Delete Item", {:controller => :items, :action => 'destroy', :id => i.id, }, :method => "delete", class: "btn btn-danger", data: {confirm: "Are you sure you  want to delete this #{u.name}?"} %>
+<br>
+
+<% end %> 
+<% end %> 
+<% end %> 

@@ -1,0 +1,19 @@
+<p> <%= @category.name %> </p>
+
+<% if current_user == @category.user %> 
+<%= form_for(@item, url: items_path, html: {method: "post"}) do |f| %> 
+<%=	f.label :name, "New Item" %> 
+<%= f.text_field :name, class: 'form-control' %> 
+<%= hidden_field_tag(:id, @category.id) %>
+<%= hidden_field_tag(:category_id, @category.id) %>
+<%= hidden_field_tag(:user_id, current_user.id) %>
+
+<br>
+<%= f.submit "Create Item", class: "btn btn-primary" %> 
+<% end %> 
+
+<% end %> 
+<br>
+<br>
+<br>
+

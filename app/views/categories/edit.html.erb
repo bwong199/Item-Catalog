@@ -1,0 +1,7 @@
+<%= form_for(@category, url: category_path(@category), html: {method: "patch"}) do |f| %> 
+<%=	f.label :name, "Edit Category" %> 
+<%= f.text_field :name, class: 'form-control' %> 
+
+<br>
+<%= f.submit "Edit", class: "btn btn-primary" %> 
+<% end %> 
