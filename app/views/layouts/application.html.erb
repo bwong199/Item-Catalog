@@ -17,7 +17,7 @@
 				<ul class="nav navbar-nav">
 					<% if user_signed_in? %>
 					<li class="active"><%= link_to('Home', categories_path)  %>  </li>
-
+					<li><%= link_to('Edit Profile', edit_user_registration_path, :method => :get) %> </li>
 
 					<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
 					<li><%= link_to('Create Category', new_category_path)  %> </li> 

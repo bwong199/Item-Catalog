@@ -5,6 +5,7 @@ RSpec.describe 'updating a blog' do
     log_in @user
     @category = @user.categories.create(name: "My Category")
   end
+  
   it 'updating a category and redirect to home category page' do
     visit "/categories/#{@category.id}/edit"
     expect(page).to have_field('Edit Category')
