@@ -7,33 +7,41 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="container">
 
-	<% if user_signed_in? %>
-	<li>
-		<%= link_to('Home', categories_path)  %>  
-	</li>
-	<li>
-		<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-	</li>
-	<li>
-		<%= link_to('Create Category', new_category_path)  %>  
-	</li>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Item Catalog</a>
+				</div>
+				<ul class="nav navbar-nav">
+					<% if user_signed_in? %>
+					<li class="active"><%= link_to('Home', categories_path)  %>  </li>
 
-	<% else %>
-	<li>
-		<%= link_to('Login', new_user_session_path)  %>  
-	</li>
 
-	<% end %>
+					<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+					<li><%= link_to('Create Category', new_category_path)  %> </li> 
+					<% else %> 
+					<li>
+						<%= link_to('Login', new_user_session_path)  %>  
+					</li>
 
-	
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+					<% end %>
 
-	<% if flash[:errors] %>
-	<%= flash[:errors] %>
-	<% end %>
-	<%= yield %>
+				</ul>
+			</div>
+		</nav>
 
+
+		
+
+		<p class="notice"><%= notice %></p>
+		<p class="alert"><%= alert %></p>
+
+		<% if flash[:errors] %>
+		<%= flash[:errors] %>
+		<% end %>
+		<%= yield %>
+	</div>
 </body>
 </html>

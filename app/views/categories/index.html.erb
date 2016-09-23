@@ -1,27 +1,52 @@
-HOME
+<div class="row">
+	<div class="col-md-3">
+		<h1> Categories </h1>
+	</div>
+	<div class="col-md-3 ">
+		<h1> Items </h1>
+	</div>
+</div>
 
 <br>
+<div class="row">
+	<div class="col-md-3">
+		<% @categories.each do |u| %>
+		<%= link_to u.name, category_path(u) %> 
+		<br>
+		<br>
+		<% if current_user == u.user %> 
 
-<% @categories.each do |u| %>
-<%= link_to u.name, category_path(u) %> 
-<br>
+		<%= button_to "Delete Category", {:controller => :categories, :action => 'destroy', :id => u.id, }, :method => "delete", class: "btn btn-danger", data: {confirm: "Are you sure you  want to delete this #{u.name}?"} %>
+		<br>
+		<%= button_to "Edit Category", {:controller => :categories, :action => 'edit', :id => u.id}, :method => "get", class: "btn btn-primary" %>
+		<br>
+		<% end %> 
+		<br>
+		<br>
 
-<% if current_user == u.user %> 
+		<% end %> 
+	</div>
 
-<%= button_to "Delete Category", {:controller => :categories, :action => 'destroy', :id => u.id, }, :method => "delete", class: "btn btn-danger", data: {confirm: "Are you sure you  want to delete this #{u.name}?"} %>
-<br>
-<%= button_to "Edit Category", {:controller => :categories, :action => 'edit', :id => u.id}, :method => "get", class: "btn btn-primary" %>
+	<div class="col-md-3">
+		
+		<% @items.each do |i| %> 
+		
+		<br>
+		<% if current_user == i.user %> 
+		<%= link_to i.name, edit_item_path(i) %> (Category:) <%= i.category.name %> 
+		<%= button_to "Delete Item", {:controller => :items, :action => 'destroy', :id => i.id, }, :method => "delete", class: "btn btn-danger", data: {confirm: "Are you sure you  want to delete this #{i.name}?"} %>
+		<% else %> 
+		<%= i.name %> <%= i.category.name %> 
 
-<br>
+		<% end %> 
 
-<% end %> 
+		<br>
+		<br>
+		<% end %> 
+	</div>
+</div>
 
-<% if current_user == u.user %> 
-<% u.items.each do |i| %> 
-<%= link_to i.name, edit_item_path(i) %> 
-<%= button_to "Delete Item", {:controller => :items, :action => 'destroy', :id => i.id, }, :method => "delete", class: "btn btn-danger", data: {confirm: "Are you sure you  want to delete this #{u.name}?"} %>
-<br>
 
-<% end %> 
-<% end %> 
-<% end %> 
+
+
+
